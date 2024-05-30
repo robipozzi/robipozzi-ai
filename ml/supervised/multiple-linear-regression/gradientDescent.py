@@ -89,13 +89,15 @@ def gradient_descent(X, y, w_in, b_in, cost_function, gradient_function, alpha, 
       b (scalar)       : Updated value of parameter 
       """
     
+    print("##### Function gradient_descent - START #####")
     # An array to store cost J and w's at each iteration primarily for graphing later
     J_history = []
     w = copy.deepcopy(w_in)  #avoid modifying global w within function
     b = b_in
+    print(f"w: {w}")
+    print(f"b: {b}")
     
-    for i in range(num_iters):
-
+    for i in range(num_iters):      
         # Calculate the gradient and update the parameters
         dj_db,dj_dw = gradient_function(X, y, w, b)   ##None
 
@@ -111,45 +113,75 @@ def gradient_descent(X, y, w_in, b_in, cost_function, gradient_function, alpha, 
         if i% math.ceil(num_iters / 10) == 0:
             print(f"Iteration {i:4d}: Cost {J_history[-1]:8.2f}   ")
         
+    print("##### Function gradient_descent - END #####")
     return w, b, J_history #return final w,b and J history for graphing
 
 # ###### Program execution
 if __name__ == '__main__':
+    print("========== Initializing training set ...")
     X_train = np.array([[2104, 5, 1, 45], [1416, 3, 2, 40], [852, 2, 1, 35]])
     y_train = np.array([460, 232, 178])
+    print("--------------------------------------------------------------")
+    print("")
 
     # data is stored in numpy array/matrix
+    print("========== Printing training set ...")
+    print("***** Features vector ...")
     print(f"X Shape: {X_train.shape}, X Type:{type(X_train)})")
     print(X_train)
+    print("")
+    print("***** Output result vector ...")
     print(f"y Shape: {y_train.shape}, y Type:{type(y_train)})")
     print(y_train)
+    print("--------------------------------------------------------------")
+    print("")
 
     # 𝐰 is a vector with 𝑛 elements.
     #   Each element contains the parameter associated with one feature.
     #   in our dataset, n is 4.
     #   notionally, we draw this as a column vector
     # 
-    # 𝑏 is a scalar parameter. 
+    # 𝑏 is a scalar parameter.
+    print("========== Initializing model weights b and w ...")
     b_init = 785.1811367994083
     w_init = np.array([ 0.39133535, 18.75376741, -53.36032453, -26.42131618])
-    print(f"w_init shape: {w_init.shape}, b_init type: {type(b_init)}")
+    print(f"w_init shape: {w_init.shape}")
+    print(f"w_init: {w_init}")
+    print(f"b_init type: {type(b_init)}")
+    print(f"b_init: {b_init}")
+    print("--------------------------------------------------------------")
+    print("")
 
-    # Compute and display cost using our pre-chosen optimal parameters. 
+    # Compute and display cost using our pre-chosen optimal parameters.
+    print("========== Computing cost with initial model weights b and w ...")
     cost = compute_cost(X_train, y_train, w_init, b_init)
     print(f'Cost at optimal w : {cost}')
+    print("--------------------------------------------------------------")
+    print("")
 
     # Compute and display gradient 
+    print("========== Computing gradient using initial model weights b and w ...")
     tmp_dj_db, tmp_dj_dw = compute_gradient(X_train, y_train, w_init, b_init)
     print(f'dj_db at initial w,b: {tmp_dj_db}')
     print(f'dj_dw at initial w,b: \n {tmp_dj_dw}')
+    print("--------------------------------------------------------------")
+    print("")
 
+    # Gradient descent method 
+    print("========== Using gradient descent method to compute optimal model weights b and w ...")
     # initialize parameters
+    print("***** Initializing model weights b and w ...")
     initial_w = np.zeros_like(w_init)
+    print(f"***** initial_w = {initial_w}")
     initial_b = 0.
+    print(f"***** initial_b = {initial_b}")
     # some gradient descent settings
     iterations = 1000
     alpha = 5.0e-7
-    # run gradient descent 
+    print(f"***** Setting interations to = {iterations}")
+    print(f"***** Setting learning rate alpha to = {alpha}")
+    # run gradient descent
+    print("***** Running Gradient descent ...")
     w_final, b_final, J_hist = gradient_descent(X_train, y_train, initial_w, initial_b, compute_cost, compute_gradient, alpha, iterations)
     print(f"b,w found by gradient descent: {b_final:0.2f},{w_final} ")
     m,_ = X_train.shape
