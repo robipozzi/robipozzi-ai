@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 #plt.style.use('./deeplearning.mplstyle')
 np.set_printoptions(precision=2)  # reduced display precision on numpy arrays
 
+# *****************************
+# ***** Functions - START *****
+# *****************************
 # Multiple linear regression model function
 def predict(x, w, b): 
     """
@@ -115,6 +118,9 @@ def gradient_descent(X, y, w_in, b_in, cost_function, gradient_function, alpha, 
         
     print("##### Function gradient_descent - END #####")
     return w, b, J_history #return final w,b and J history for graphing
+# ***************************
+# ***** Functions - END *****
+# ***************************
 
 # ###### Program execution
 if __name__ == '__main__':
