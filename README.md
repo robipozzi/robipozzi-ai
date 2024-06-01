@@ -21,11 +21,11 @@ git clone https://github.com/robipozzi/robipozzi-ai
 
 ### Linear Regression
 [TODO]
-**[README](ml/supervised/multiple-linear-regression/README.md)**
+**[Go to README](ml/supervised/multiple-linear-regression/README.md)**
 
 ### Classification and Logistic Regression
 [TODO]
-**[README](ml/supervised/logistic-regression/README.md)**
+**[Go to README](ml/supervised/logistic-regression/README.md)**
 
 ## Unsupervised Learning
 [TODO]

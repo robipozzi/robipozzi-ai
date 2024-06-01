@@ -48,6 +48,6 @@ In the end the formula for Gradient Descent is exactly the same for both Logisti
 
 ![](img/GradientDescent4.png)
 
-**************************************************************************************************************************************
-***** Credit to Andrew Ng (definitions are taken from his course **Supervised Machine Learning: Regression and Classification**) *****
-**************************************************************************************************************************************
+***************************************************************************************************************************************************
+***** Credit to Andrew Ng (definitions and formulas are taken from his course **Supervised Machine Learning: Regression and Classification**) *****
+***************************************************************************************************************************************************
