@@ -58,9 +58,7 @@ def compute_gradient_logistic(X, y, w, b):
     dj_db = 0.
 
     for i in range(m):
-        #f_wb_i = sigmoid(np.dot(X[i],w) + b)          #(n,)(n,)=scalar
-        # Sigmoid function is g = 1/(1+np.exp(np.dot(X[i],w) + b))
-        f_wb_i = 1/(1+np.exp(np.dot(X[i],w) + b))
+        f_wb_i = sigmoid(np.dot(X[i],w) + b)          #(n,)(n,)=scalar
         err_i  = f_wb_i  - y[i]                       #scalar
         for j in range(n):
             dj_dw[j] = dj_dw[j] + err_i * X[i,j]      #scalar
