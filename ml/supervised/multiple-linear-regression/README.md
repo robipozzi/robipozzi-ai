@@ -20,6 +20,10 @@ The equation for the cost function regularized linear regression is:
 
 ![](img/RegularizedLinearRegressionCostFunction.png)
 
+where 
+
+![](img/LinearRegressionModelFunction.png)
+
 The difference is the regularization term
 
 ![](img/RegularizationTerm.png)

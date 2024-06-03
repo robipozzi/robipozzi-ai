@@ -58,6 +58,16 @@ The equation for the cost function regularized linear regression is:
 
 ![](img/RegularizedLogisticRegressionCostFunction.png)
 
+where 
+
+![](img/LogisticRegressionModelFunction.png)
+
+As was the case in linear regression above, the difference is the regularization term, which is
+
+![](img/RegularizationTerm.png)
+
+Including this term encourages gradient descent to minimize the size of the parameters. Note, in this example, the parameter 𝑏 is not regularized. This is standard practice. 
+
 Here is how Logistic regression cost function and gradient descent equations gets modified when regularization is added.
 
 ![](img/RegularizedLogisticRegression.png)
