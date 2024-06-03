@@ -7,6 +7,18 @@ import matplotlib.pyplot as plt
 # *****************************
 # ***** Functions - START *****
 # *****************************
+# ===== Sigmoid Function
+def sigmoid(z):
+    """
+    Compute the sigmoid of z
+    Args:
+        z (ndarray): A scalar, numpy array of any size.
+    Returns:
+        g (ndarray): sigmoid(z), with the same shape as z  
+    """
+    g = 1/(1+np.exp(-z))
+    return g
+
 def compute_cost_logistic(X, y, w, b):
     """
     Computes cost
@@ -22,9 +34,9 @@ def compute_cost_logistic(X, y, w, b):
     cost = 0.0
     for i in range(m):
         z_i = np.dot(X[i],w) + b
-        #f_wb_i = sigmoid(z_i)
+        f_wb_i = sigmoid(z_i)
         # Sigmoid function is g = 1/(1+np.exp(-z_i))
-        f_wb_i = 1/(1+np.exp(-z_i))
+        #f_wb_i = 1/(1+np.exp(-z_i))
         cost +=  -y[i]*np.log(f_wb_i) - (1-y[i])*np.log(1-f_wb_i)
     cost = cost / m
     return cost

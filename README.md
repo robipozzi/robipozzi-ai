@@ -24,7 +24,14 @@ git clone https://github.com/robipozzi/robipozzi-ai
 **[Go to README](ml/supervised/multiple-linear-regression/README.md)**
 
 ### Classification and Logistic Regression
-[TODO]
+A classification problem in machine learning is one in which a class label is anticipated for a specific example of input data. 
+
+Problems with categorization include the following: 
+* Give an example and indicate whether it is spam or not. 
+* Identify a handwritten character as one of the recognized characters.
+
+Logistic regression is a supervised machine learning algorithm widely used for binary classification tasks, such as identifying whether an email is spam or not and diagnosing diseases by assessing the presence or absence of specific conditions based on patient test results. 
+
 **[Go to README](ml/supervised/logistic-regression/README.md)**
 
 ## Unsupervised Learning

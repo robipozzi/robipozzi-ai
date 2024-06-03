@@ -6,7 +6,9 @@
 ## Model Function
 The predictions of a classification model must be between 0 and 1 since the output variable y is either 0 or 1.
 
-This can be accomplished by using a "sigmoid function" which outputs input values to values between 0 and 1.
+This approach utilizes the logistic (or sigmoid) function to transform a linear combination of input features into a probability value ranging between 0 and 1.
+
+This probability indicates the likelihood that a given input corresponds to one of two predefined categories.
 
 ![](img/Sigmoid.png)
 

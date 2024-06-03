@@ -110,6 +110,11 @@ def gradient_descent(X, y, w_in, b_in, alpha, num_iters):
 
 # ###### Program execution
 if __name__ == '__main__':
+    print("#########################################")
+    print("########## Logistic regression ##########")
+    print("#########################################")
+    print("")
+
     print("========== Initializing training set ...")
     X_train = np.array([[0.5, 1.5], [1,1], [1.5, 0.5], [3, 0.5], [2, 2], [1, 2.5]])
     y_train = np.array([0, 0, 0, 1, 1, 1])
@@ -157,5 +162,3 @@ if __name__ == '__main__':
     
     print("--------------------------------------------------------------")
     print("")
-
-    
