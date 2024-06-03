@@ -2,6 +2,7 @@
 - [Model Function](#model-function)
 - [Loss and Cost Functions](#loss-and-cost-functions)
 - [Gradient Descent](#gradient-descent)
+- [Regularization](#regularization)
 
 ## Model Function
 The predictions of a classification model must be between 0 and 1 since the output variable y is either 0 or 1.
@@ -49,6 +50,17 @@ where
 In the end the formula for Gradient Descent is exactly the same for both Logistic and Linear regression, what changes is the model function.
 
 ![](img/GradientDescent4.png)
+
+## Regularization
+Regularization serves the purpose to limit model parameters wj in order to avoid or at least minimize overfitting.
+
+The equation for the cost function regularized linear regression is:
+
+![](img/RegularizedLogisticRegressionCostFunction.png)
+
+Here is how Logistic regression cost function and gradient descent equations gets modified when regularization is added.
+
+![](img/RegularizedLogisticRegression.png)
 
 ***************************************************************************************************************************************************
 ***** Credit to Andrew Ng (definitions and formulas are taken from his course **Supervised Machine Learning: Regression and Classification**) *****
