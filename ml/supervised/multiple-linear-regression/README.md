@@ -5,13 +5,31 @@
 - [Regularization](#regularization)
 
 ## Model Function
-[TODO]
+The model's prediction with multiple variables is given by the linear model:
+
+![](img/MultipleLinearRegressionModelFunction.png)
+
+or, in vector notation
+
+![](img/MultipleLinearRegressionVectorModelFunction.png)
 
 ## Cost Function
-[TODO]
+The equation for the cost function with multiple variables 𝐽(𝐰,𝑏) is:
+
+![](img/LinearRegressionCostFunction.png)
+
+where 
+
+![](img/LinearRegressionModelFunction.png)
 
 ## Gradient Descent
-[TODO]
+Gradient descent for multiple variables:
+
+![](img/GradientDescent1.png)
+
+where, n is the number of features, parameters 𝑤𝑗, 𝑏, are updated simultaneously and where 
+
+![](img/GradientDescent2.png)
 
 ## Regularization
 Regularization serves the purpose to limit model parameters wj in order to avoid or at least minimize overfitting.
