@@ -22,7 +22,7 @@ def predict(x, w, b):
     p = np.dot(x, w) + b     
     return p
 
-# Cost function
+# Linear Regression Cost function
 def compute_cost(X, y, w, b): 
     """
     compute cost
@@ -43,7 +43,7 @@ def compute_cost(X, y, w, b):
     cost = cost / (2 * m)                      #scalar    
     return cost
 
-# Cost function with regularization
+# Linear Regression Cost function with regularization
 def compute_cost_linear_reg(X, y, w, b, lambda_ = 1):
     """
     Computes the cost over all examples
@@ -99,6 +99,38 @@ def compute_gradient(X, y, w, b):
     dj_dw = dj_dw / m                                
     dj_db = dj_db / m                                
         
+    return dj_db, dj_dw
+
+# Compute Gradient function with Regularization
+def compute_gradient_linear_reg(X, y, w, b, lambda_): 
+    """
+    Computes the gradient for linear regression 
+    Args:
+      X (ndarray (m,n): Data, m examples with n features
+      y (ndarray (m,)): target values
+      w (ndarray (n,)): model parameters  
+      b (scalar)      : model parameter
+      lambda_ (scalar): Controls amount of regularization
+      
+    Returns:
+      dj_dw (ndarray (n,)): The gradient of the cost w.r.t. the parameters w. 
+      dj_db (scalar):       The gradient of the cost w.r.t. the parameter b. 
+    """
+    m,n = X.shape           #(number of examples, number of features)
+    dj_dw = np.zeros((n,))
+    dj_db = 0.
+
+    for i in range(m):                             
+        err = (np.dot(X[i], w) + b) - y[i]                 
+        for j in range(n):                         
+            dj_dw[j] = dj_dw[j] + err * X[i, j]               
+        dj_db = dj_db + err                        
+    dj_dw = dj_dw / m                                
+    dj_db = dj_db / m   
+    
+    for j in range(n):
+        dj_dw[j] = dj_dw[j] + (lambda_/m) * w[j]
+
     return dj_db, dj_dw
 
 # Gradient descent
@@ -235,7 +267,7 @@ if __name__ == '__main__':
 
     print("########## USING REGULARIZATION ##########")
 
-    # Compute and display cost using our pre-chosen optimal parameters.
+    # Compute and display cost using regularization
     print("========== Computing cost with regularization ...")
     np.random.seed(1)
     X_tmp = np.random.rand(5,6)
@@ -243,19 +275,37 @@ if __name__ == '__main__':
     w_tmp = np.random.rand(X_tmp.shape[1]).reshape(-1,)-0.5
     b_tmp = 0.5
     lambda_tmp = 0.7
-
     print(f"X_tmp shape: {X_tmp.shape}")
+    print(f"X_tmp: {X_tmp}")
     print(f"y_tmp: {y_tmp}")
     print(f"w_tmp: {w_tmp}")
     print(f"b_tmp: {b_tmp}")
     print(f"lambda_tmp: {lambda_tmp}")
+    
     cost_tmp = compute_cost_linear_reg(X_tmp, y_tmp, w_tmp, b_tmp, lambda_tmp)
-
     print("Regularized cost:", cost_tmp)
     print("--------------------------------------------------------------")
     print("")
 
+    # Compute Gradient with regularization
+    print("========== Computing gradient with regularization ...")
+    np.random.seed(1)
+    X_tmp = np.random.rand(5,3)
+    y_tmp = np.array([0,1,0,1,0])
+    w_tmp = np.random.rand(X_tmp.shape[1])
+    b_tmp = 0.5
+    lambda_tmp = 0.7
+    print(f"X_tmp shape: {X_tmp.shape}")
+    print(f"X_tmp: {X_tmp}")
+    print(f"y_tmp: {y_tmp}")
+    print(f"w_tmp: {w_tmp}")
+    print(f"b_tmp: {b_tmp}")
+    print(f"lambda_tmp: {lambda_tmp}")
 
-
-
+    dj_db_tmp, dj_dw_tmp =  compute_gradient_linear_reg(X_tmp, y_tmp, w_tmp, b_tmp, lambda_tmp)
+    print(f"dj_db: {dj_db_tmp}", )
+    print(f"Regularized dj_dw:\n {dj_dw_tmp.tolist()}", )
     
+
+    print("--------------------------------------------------------------")
+    print("")

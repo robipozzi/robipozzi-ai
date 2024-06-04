@@ -17,7 +17,7 @@ In the case of logistic regression, z (the input to the sigmoid function), is th
 
 A logistic regression model applies the sigmoid to the familiar linear regression model as shown below:
 
-![](img/LogisticRegression.png)
+![](img/LogisticRegressionModel.png)
 
 ## Loss and Cost Functions
 Logistic Regression uses a loss function more suited to the task of categorization where the target is 0 or 1 rather than any number.
@@ -66,7 +66,19 @@ As was the case in linear regression above, the difference is the regularization
 
 ![](img/RegularizationTerm.png)
 
-Including this term encourages gradient descent to minimize the size of the parameters. Note, in this example, the parameter 𝑏 is not regularized. This is standard practice. 
+Including this term encourages gradient descent to minimize the size of the parameters. Note, in this example, the parameter 𝑏 is not regularized. This is standard practice.
+
+The basic algorithm for running gradient descent does not change with regularization, it is:
+
+![](img/GradientDescent1.png)
+
+The gradient calculation for logistic regression is
+
+![](img/GradientDescentWithRegularization.png)
+
+Remember that 
+
+![](img/LogisticRegressionModel.png)
 
 Here is how Logistic regression cost function and gradient descent equations gets modified when regularization is added.
 

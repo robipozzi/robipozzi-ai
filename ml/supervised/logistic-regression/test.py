@@ -1,10 +1,7 @@
 import copy, math
 import numpy as np
-#%matplotlib widget
+
 import matplotlib.pyplot as plt
-#from lab_utils_common import  dlc, plot_data, plt_tumor_data, sigmoid, compute_cost_logistic
-#from plt_quad_logistic import plt_quad_logistic, plt_prob
-#plt.style.use('./deeplearning.mplstyle')
 
 # *****************************
 # ***** Functions - START *****
@@ -21,7 +18,7 @@ def sigmoid(z):
     g = 1/(1+np.exp(-z))
     return g
 
-# Logistic regression model function (using vectorization)
+# Logistic regression model function
 def predict(X, w, b): 
     """
     single predict using logistic regression
@@ -33,49 +30,10 @@ def predict(X, w, b):
     Returns:
       p (scalar):  prediction
     """
-    n = X[0].shape
-    p = np.zeros(n)
     z = np.dot(X, w) + b
     f_wb = sigmoid(z)
-    f_wb_shape = f_wb.shape
-    for k in range(f_wb_shape):
-        p[k] = f_wb >= 0.5
-    return p
-
-# Logistic regression model function (no vectorization)
-def predictNoVectorization(X, w, b): 
-    """
-    single predict using logistic regression
-    Args:
-      x (ndarray): Shape (n,) example with multiple features
-      w (ndarray): Shape (n,) model parameters   
-      b (scalar):             model parameter 
-      
-    Returns:
-      p (scalar):  prediction
-    """
-    # number of training examples
-    m, n = X.shape
-    print(f"m: {m}")
-    print(f"n: {n}")
-    p = np.zeros(m)
-
-    for i in range(m):   
-        # Calculate f_wb (exactly how you did it in the compute_cost function above)
-        z_wb = 0
-        # Loop over each feature
-        for j in range(n): 
-            # Add the corresponding term to z_wb
-            z_wb_ij = X[i, j] * w[j]
-            z_wb += z_wb_ij
-            
-        # Add bias term 
-        z_wb += b
-        # Calculate the prediction from the model
-        f_wb = sigmoid(z_wb)
-        # Apply the threshold
-        p[i] = f_wb >= 0.5
-
+    print(f"f_wb: {f_wb}, f_wb Type:{type(f_wb)})")
+    p = int(f_wb >= 0.5)
     return p
 
 def compute_cost_logistic(X, y, w, b):
@@ -184,38 +142,23 @@ if __name__ == '__main__':
     print("***** Printing training set output result vector ...")
     print(f"y Shape: {y_train.shape}, y Type:{type(y_train)})")
     print(y_train)
-
-    fig,ax = plt.subplots(1,1,figsize=(4,4))
-    #plot_data(X_train, y_train, ax)
-    ax.axis([0, 4, 0, 3.5])
-    ax.set_ylabel('$x_1$', fontsize=12)
-    ax.set_xlabel('$x_0$', fontsize=12)
-    #plt.show()
-
     print("--------------------------------------------------------------")
     print("")
 
-    print("========== Computing Gradient for logistic regression ...")
+    print("========== Computing prediction ...")
     w_tmp = np.array([2.,3.])
     b_tmp = 1.
     print("***** Initalizing and printing model parameters ...")
     print(f"w_tmp: {w_tmp}, w_tmp Type:{type(w_tmp)})")
     print(f"b_tmp: {b_tmp}, b_tmp Type:{type(b_tmp)})")
-
-    dj_db_tmp, dj_dw_tmp = compute_gradient_logistic(X_train, y_train, w_tmp, b_tmp)
-    print(f"dj_db: {dj_db_tmp}" )
-    print(f"dj_dw: {dj_dw_tmp.tolist()}" )
-    print("--------------------------------------------------------------")
-    print("")
-
-    print("========== Computing Gradient Descent for logistic regression ...")
-    w_tmp  = np.zeros_like(X_train[0])
-    b_tmp  = 0.
-    alph = 0.1
-    iters = 10000
-
-    w_out, b_out, _ = gradient_descent(X_train, y_train, w_tmp, b_tmp, alph, iters) 
-    print(f"\nupdated parameters: w:{w_out}, b:{b_out}")
-    
+    print("***** Run prediction on training set...")
+    y = predict(X_train, w_tmp, b_tmp)
+    print(f"y Shape: {y.shape}")
+    print(y)
+    print("***** Run prediction on new input data...")
+    X = np.array([0.5, 1.5])
+    print(f"X Shape: {X.shape}")
+    y = predict(X, w_tmp, b_tmp)
+    print(f"y: {y}")
     print("--------------------------------------------------------------")
     print("")
