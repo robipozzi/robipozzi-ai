@@ -1,6 +1,5 @@
 import copy, math
 import numpy as np
-
 import matplotlib.pyplot as plt
 
 # *****************************
@@ -28,11 +27,20 @@ def predict(X, w, b):
       b (scalar):             model parameter 
       
     Returns:
-      p (scalar):  prediction
+      p (scalar / array):  prediction
     """
     z = np.dot(X, w) + b
     f_wb = sigmoid(z)
     print(f"f_wb: {f_wb}, f_wb Type:{type(f_wb)})")
+    # Compute prediction (0 or 1) in case f_wb is an array
+    if type(f_wb) == np.ndarray:
+        print("*** ARRAY !!!")
+        size = f_wb.size
+        p = np.zeros(size)
+        for k in range(size):
+            p[k] = int(f_wb[k] >= 0.5)
+        return p
+    # Compute prediction (0 or 1) in case f_wb is a number
     p = int(f_wb >= 0.5)
     return p
 
@@ -152,6 +160,7 @@ if __name__ == '__main__':
     print(f"w_tmp: {w_tmp}, w_tmp Type:{type(w_tmp)})")
     print(f"b_tmp: {b_tmp}, b_tmp Type:{type(b_tmp)})")
     print("***** Run prediction on training set...")
+    print(f"X_train Shape: {X_train.shape}")
     y = predict(X_train, w_tmp, b_tmp)
     print(f"y Shape: {y.shape}")
     print(y)

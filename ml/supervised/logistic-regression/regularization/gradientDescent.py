@@ -35,7 +35,18 @@ def predict(X, w, b):
     """
     z = np.dot(X, w) + b
     f_wb = sigmoid(z)
-    return f_wb
+    print(f"f_wb: {f_wb}, f_wb Type:{type(f_wb)})")
+    # Compute prediction (0 or 1) in case f_wb is an array
+    if type(f_wb) == np.ndarray:
+        print("*** ARRAY !!!")
+        size = f_wb.size
+        p = np.zeros(size)
+        for k in range(size):
+            p[k] = int(f_wb[k] >= 0.5)
+        return p
+    # Compute prediction (0 or 1) in case f_wb is a number
+    p = int(f_wb >= 0.5)
+    return p
 
 # Logistic regression model function (no vectorization)
 def predictNoVectorization(X, w, b): 
