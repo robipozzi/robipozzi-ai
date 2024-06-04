@@ -26,7 +26,7 @@ Linear regression is a type of supervised machine learning algorithm that comput
 
 It is a statistical method used in data science and machine learning for predictive analysis.
 
-**[Go to Details](ml/supervised/multiple-linear-regression/README.md)**
+**[Go to Details](ml/supervised/linear-regression/README.md)**
 
 ### Classification and Logistic Regression
 A classification problem in machine learning is one in which a class label is anticipated for a specific example of input data. 
