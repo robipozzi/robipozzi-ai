@@ -10,13 +10,6 @@ import logging
 logging.getLogger("tensorflow").setLevel(logging.ERROR)
 tf.autograph.set_verbosity(0)
 
-# *****************************
-# ***** Functions - START *****
-# *****************************
-# ***************************
-# ***** Functions - END *****
-# ***************************
-
 # ###### Program execution
 if __name__ == '__main__':
     print("#############################################################################")
