@@ -36,6 +36,7 @@ if __name__ == '__main__':
     X_train, y_train = make_blobs(n_samples=m, centers=centers, cluster_std=std,random_state=30)
     print(f"X_train = {X_train}")
     print(f"y_train = {y_train}")
+    print("")
 
     #plt_mc(X_train,y_train,classes, centers, std=std)
 
@@ -45,6 +46,7 @@ if __name__ == '__main__':
     print(f"class representation {y_train[:10]}")
     # show shapes of our dataset
     print(f"shape of X_train: {X_train.shape}, shape of y_train: {y_train.shape}")
+    print("")
 
     print("########## Neural Network ##########")
     print("")
@@ -59,7 +61,7 @@ if __name__ == '__main__':
     )
     print("")
 
-    print("***** Compile the model ...")
+    print("***** Compile the model using SparseCategoricalCrossentropy loss function ...")
     model.compile(
         loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
         optimizer=tf.keras.optimizers.Adam(0.01),
