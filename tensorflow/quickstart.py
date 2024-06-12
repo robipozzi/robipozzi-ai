@@ -55,7 +55,3 @@ if __name__ == '__main__':
         tf.keras.layers.Softmax()
     ])
     probability_model(x_test[:5])
-
-
-
-
