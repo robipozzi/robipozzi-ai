@@ -23,9 +23,9 @@ if __name__ == '__main__':
     X = [[ 1,  2,  3],  # 2 samples, 3 features
         [11, 12, 13]]
     y = [0, 1]  # classes of each sample
-    print("Training model with")
-    print(f"Input Features = \n {X}")
-    print(f"Output = \n {y}")
+    print("Training model with:")
+    print(f"--> Input Features = \n {X}")
+    print(f"--> Output = \n {y}")
     clf.fit(X, y)
     print(" ")
 
@@ -37,6 +37,18 @@ if __name__ == '__main__':
     print(f"Input Features = \n {newX}")
     clf.predict(newX)  # predict classes of new data
     print(f"Output = \n {output}")
+    print(" ")
+
+    print("===== Linear Regression example =====")
+    ln = LinearRegression()
+    print("Training model with:")
+    print(f"--> Input Features = \n {X}")
+    print(f"--> Output = \n {y}")
+    ln.fit(X, y)
+    modelParams = ln.coef_
+    intercept = ln.intercept_
+    print(f"Model Params = \n {modelParams}")
+    print(f"Intercept = \n {intercept}")
     print(" ")
 
     print("===== Transformers and pre-processors =====")
