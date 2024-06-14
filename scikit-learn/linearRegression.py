@@ -13,40 +13,52 @@ if __name__ == '__main__':
     print("############################################")
     print(" ")
 
-    print("===== Loading Digits dataset =====")
-    # Load the diabetes dataset
+    print("# Loading diabetes dataset ...")
     diabetes_X, diabetes_y = datasets.load_diabetes(return_X_y=True)
-
     # Use only one feature
     diabetes_X = diabetes_X[:, np.newaxis, 2]
+    print("# Diabetes dataset loaded")
+    print(" ")
 
-    # Split the data into training/testing sets
+    print("# Split the data into training/testing sets")
     diabetes_X_train = diabetes_X[:-20]
     diabetes_X_test = diabetes_X[-20:]
 
-    # Split the targets into training/testing sets
+    print("# Split the targets into training/testing sets")
     diabetes_y_train = diabetes_y[:-20]
     diabetes_y_test = diabetes_y[-20:]
+    print(" ")
 
-    # Create linear regression object
+    print("# Creating linear regression object ...")
     regr = linear_model.LinearRegression()
+    print("# Linear regression object created")
+    print(" ")
 
-    # Train the model using the training sets
+    print("# Train the model using the training sets")
     regr.fit(diabetes_X_train, diabetes_y_train)
-
-    # Make predictions using the testing set
-    diabetes_y_pred = regr.predict(diabetes_X_test)
-
     # The coefficients
-    print("Coefficients: \n", regr.coef_)
-    # The mean squared error
-    print("Mean squared error: %.2f" % mean_squared_error(diabetes_y_test, diabetes_y_pred))
-    # The coefficient of determination: 1 is perfect prediction
-    print("Coefficient of determination: %.2f" % r2_score(diabetes_y_test, diabetes_y_pred))
+    print("Model Coefficients: ", regr.coef_)
+    print("Model Intercept: ", regr.intercept_)
+    print(" ")
 
+    print("# Make predictions using the training set")
+    diabetes_y_train_pred = regr.predict(diabetes_X_train)
+    # The mean squared error
+    print("Mean squared error on training set: %.2f" % mean_squared_error(diabetes_y_train, diabetes_y_train_pred))
+    print(" ")
+
+    print("# Make predictions using the testing set")
+    diabetes_y_test_pred = regr.predict(diabetes_X_test)
+    # The mean squared error
+    print("Mean squared error on testing set: %.2f" % mean_squared_error(diabetes_y_test, diabetes_y_test_pred))
+    # The coefficient of determination: 1 is perfect prediction
+    print("Coefficient of determination: %.2f" % r2_score(diabetes_y_test, diabetes_y_test_pred))
+    print(" ")
+
+    print("===== Plotting =====")
     # Plot outputs
     plt.scatter(diabetes_X_test, diabetes_y_test, color="black")
-    plt.plot(diabetes_X_test, diabetes_y_pred, color="blue", linewidth=3)
+    plt.plot(diabetes_X_test, diabetes_y_test_pred, color="blue", linewidth=3)
 
     plt.xticks(())
     plt.yticks(())
