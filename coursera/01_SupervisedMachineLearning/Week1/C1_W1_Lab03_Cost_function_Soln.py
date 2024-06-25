@@ -24,6 +24,7 @@
 
 import numpy as np
 get_ipython().run_line_magic('matplotlib', 'widget')
+#%matplotlib widget
 import matplotlib.pyplot as plt
 from lab_utils_uni import plt_intuition, plt_stationary, plt_update_onclick, soup_bowl
 plt.style.use('./deeplearning.mplstyle')
@@ -167,7 +168,3 @@ soup_bowl()
 #  - Minimizing the cost can provide optimal values of $w$, $b$.
 
 # In[ ]:
-
-
-
-
