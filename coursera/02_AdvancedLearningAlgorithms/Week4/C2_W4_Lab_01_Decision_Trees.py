@@ -29,18 +29,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from utils import *
 
-
 # In[4]:
 
-
-get_ipython().run_line_magic('matplotlib', 'widget')
+#get_ipython().run_line_magic('matplotlib', 'widget')
 _ = plot_entropy()
 
 
 # In[ ]:
-
-
-
 
 
 # |                                                     |   Ear Shape | Face Shape | Whiskers |   Cat  |
@@ -77,9 +72,6 @@ _ = plot_entropy()
 # In[ ]:
 
 
-
-
-
 # In[5]:
 
 
@@ -106,7 +98,8 @@ X_train[0]
 
 # This means that the first example has a pointy ear shape, round face shape and it has whiskers.
 
-# On each node, we compute the information gain for each feature, then split the node on the feature with the higher information gain, by comparing the entropy of the node with the weighted entropy in the two splitted nodes. 
+# On each node, we compute the information gain for each feature, then split the node on the feature with the higher information gain, 
+# by comparing the entropy of the node with the weighted entropy in the two splitted nodes. 
 
 # So, the root node has every animal in our dataset. Remember that $p_1^{node}$ is the proportion of positive class (cats) in the root node. So
 # 
@@ -123,7 +116,8 @@ def entropy(p):
     else:
         return -p * np.log2(p) - (1- p)*np.log2(1 - p)
     
-print(entropy(0.5))
+p = 0.5
+print(f"For p = {p} --> Entropy = {entropy(p)}")
 
 
 # To illustrate, let's compute the information gain if we split the node for each of the features. To do this, let's write some functions.
@@ -165,7 +159,8 @@ split_indices(X_train, 0)
 # - $w^{\text{left}}$ and $w^{\text{right}}$, the proportion of animals in **each node**.
 # - $p^{\text{left}}$ and $p^{\text{right}}$, the proportion of cats in **each split**.
 # 
-# Note the difference between these two definitions!! To illustrate, if we split the root node on the feature of index 0 (Ear Shape), then in the left node, the one that has the animals 0, 3, 4, 5 and 7, we have:
+# Note the difference between these two definitions!! To illustrate, if we split the root node on the feature of index 0 (Ear Shape), 
+# then in the left node, the one that has the animals 0, 3, 4, 5 and 7, we have:
 # 
 # $$w^{\text{left}}= \frac{5}{10} = 0.5 \text{ and } p^{\text{left}} = \frac{4}{5}$$
 # $$w^{\text{right}}= \frac{5}{10} = 0.5 \text{ and } p^{\text{right}} = \frac{1}{5}$$
@@ -177,6 +172,10 @@ def weighted_entropy(X,y,left_indices,right_indices):
     """
     This function takes the splitted dataset, the indices we chose to split and returns the weighted entropy.
     """
+    print(f"Total n° of elements (calculated as len(X)) = {len(X)}")
+    print(f"n° of elements in left branch (calculated as len(left_indices)) = {len(left_indices)}")
+    print(f"n° of elements in right branch (calculated as len(right_indices)) = {len(right_indices)}")
+    
     w_left = len(left_indices)/len(X)
     w_right = len(right_indices)/len(X)
     p_left = sum(y[left_indices])/len(left_indices)
@@ -193,7 +192,8 @@ left_indices, right_indices = split_indices(X_train, 0)
 weighted_entropy(X_train, y_train, left_indices, right_indices)
 
 
-# So, the weighted entropy in the 2 split nodes is 0.72. To compute the **Information Gain** we must subtract it from the entropy in the node we chose to split (in this case, the root node). 
+# So, the weighted entropy in the 2 split nodes is 0.72. To compute the **Information Gain** we must subtract it from the entropy in the node 
+# we chose to split (in this case, the root node). 
 
 # In[12]:
 
