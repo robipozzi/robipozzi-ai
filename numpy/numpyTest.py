@@ -29,6 +29,24 @@ def createArray():
     print("----------------------")
     print()
 
+def accessArray():
+    print("##### accessArray() #####")
+    a = np.array([[1,2,3,4,5], [6,7,8,9,10]])
+    b = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+
+    print(f"Array:\n {a} \nDimension: {a.ndim} \nType: {type(a)}")
+    print("----------------------")
+    print('Access 2nd element on 1st row: ', a[0, 1])
+    print("----------------------")
+    
+    print(f"Array:\n {b} \nDimension: {b.ndim} \nType: {type(b)}")
+    print("----------------------")
+    print('Access the third element of the second array of the first array: ', b[0, 1, 2])
+    print("----------------------")
+    
+    print()
+
 if __name__ == "__main__":
     print("Here I am, let's start\n")
     createArray()
+    accessArray()
