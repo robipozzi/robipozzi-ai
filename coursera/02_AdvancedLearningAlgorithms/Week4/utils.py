@@ -32,7 +32,6 @@ def split_dataset(X, node_indices, feature):
         
     return left_indices, right_indices   
     
-    
 
 def compute_information_gain(X, y, node_indices, feature):
     
@@ -54,6 +53,7 @@ def compute_information_gain(X, y, node_indices, feature):
     
     return information_gain
 
+
 def get_best_split(X, y, node_indices):   
     num_features = X.shape[1]
     
@@ -65,8 +65,7 @@ def get_best_split(X, y, node_indices):
         if info_gain > max_info_gain:
             max_info_gain = info_gain
             best_feature = feature
-        
-   
+    
     return best_feature
 
 
@@ -77,19 +76,18 @@ def build_tree_recursive(X, y, node_indices, branch_name, max_depth, current_dep
         print(formatting, "%s leaf node with indices" % branch_name, node_indices)
         return
    
-
     best_feature = get_best_split(X, y, node_indices) 
     
     formatting = "-"*current_depth
     print("%s Depth %d, %s: Split on feature: %d" % (formatting, current_depth, branch_name, best_feature))
     
-
     left_indices, right_indices = split_dataset(X, node_indices, best_feature)
     tree.append((left_indices, right_indices, best_feature))
     
     build_tree_recursive(X, y, left_indices, "Left", max_depth, current_depth+1, tree)
     build_tree_recursive(X, y, right_indices, "Right", max_depth, current_depth+1, tree)
     return tree
+
 
 def generate_node_image(node_indices):
     image_paths = ["images/%d.png" % idx for idx in node_indices]
@@ -207,6 +205,7 @@ def generate_tree_viz(root_indices, y, tree):
             pass
     ax.axis('off')
     plt.show()
+
 
 def plot_entropy():
     def entropy(p):

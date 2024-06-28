@@ -22,22 +22,16 @@
 # Note that the H attains its higher value when $p = 0.5$. This means that the probability of event is $0.5$. And its minimum value is attained in $p = 0$ and $p = 1$, i.e., the probability of the event happening is totally predictable. Thus, the entropy shows the degree of predictability of an event.
 
 # In[3]:
-
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from utils import *
 
 # In[4]:
-
 #get_ipython().run_line_magic('matplotlib', 'widget')
 _ = plot_entropy()
 
-
 # In[ ]:
-
-
 # |                                                     |   Ear Shape | Face Shape | Whiskers |   Cat  |
 # |:---------------------------------------------------:|:---------:|:-----------:|:---------:|:------:|
 # | <img src="images/0.png" alt="drawing" width="50"/> |   Pointy   |   Round     |  Present  |    1   |
@@ -69,12 +63,8 @@ _ = plot_entropy()
 #             - 1 if the animal is a cat
 #             - 0 otherwise
 
-# In[ ]:
-
 
 # In[5]:
-
-
 X_train = np.array([[1, 1, 1],
 [0, 0, 1],
  [0, 1, 0],
@@ -88,13 +78,9 @@ X_train = np.array([[1, 1, 1],
 
 y_train = np.array([1, 1, 0, 0, 1, 1, 0, 1, 0, 0])
 
-
 # In[6]:
-
-
 #For instance, the first example
 X_train[0]
-
 
 # This means that the first example has a pointy ear shape, round face shape and it has whiskers.
 
@@ -108,8 +94,6 @@ X_train[0]
 # Now let's write a function to compute the entropy.
 
 # In[7]:
-
-
 def entropy(p):
     if p == 0 or p == 1:
         return 0
@@ -119,12 +103,9 @@ def entropy(p):
 p = 0.5
 print(f"For p = {p} --> Entropy = {entropy(p)}")
 
-
 # To illustrate, let's compute the information gain if we split the node for each of the features. To do this, let's write some functions.
 
 # In[8]:
-
-
 def split_indices(X, index_feature):
     """Given a dataset and a index feature, return two lists for the two split nodes, the left node has the animals that have 
     that feature = 1 and the right node those that have the feature = 0 
@@ -149,10 +130,7 @@ def split_indices(X, index_feature):
 # and the right indices, the remaining ones.
 
 # In[9]:
-
-
 split_indices(X_train, 0)
-
 
 # Now we need another function to compute the weighted entropy in the splitted nodes. As you've seen in the video lecture, we must find:
 # 
@@ -166,8 +144,6 @@ split_indices(X_train, 0)
 # $$w^{\text{right}}= \frac{5}{10} = 0.5 \text{ and } p^{\text{right}} = \frac{1}{5}$$
 
 # In[10]:
-
-
 def weighted_entropy(X,y,left_indices,right_indices):
     """
     This function takes the splitted dataset, the indices we chose to split and returns the weighted entropy.
@@ -184,20 +160,14 @@ def weighted_entropy(X,y,left_indices,right_indices):
     weighted_entropy = w_left * entropy(p_left) + w_right * entropy(p_right)
     return weighted_entropy
 
-
 # In[11]:
-
-
 left_indices, right_indices = split_indices(X_train, 0)
 weighted_entropy(X_train, y_train, left_indices, right_indices)
-
 
 # So, the weighted entropy in the 2 split nodes is 0.72. To compute the **Information Gain** we must subtract it from the entropy in the node 
 # we chose to split (in this case, the root node). 
 
 # In[12]:
-
-
 def information_gain(X, y, left_indices, right_indices):
     """
     Here, X has the elements in the node and y is theirs respectives classes
@@ -207,34 +177,23 @@ def information_gain(X, y, left_indices, right_indices):
     w_entropy = weighted_entropy(X,y,left_indices,right_indices)
     return h_node - w_entropy
 
-
 # In[13]:
-
-
 information_gain(X_train, y_train, left_indices, right_indices)
-
 
 # Now, let's compute the information gain if we split the root node for each feature:
 
 # In[14]:
-
-
 for i, feature_name in enumerate(['Ear Shape', 'Face Shape', 'Whiskers']):
     left_indices, right_indices = split_indices(X_train, i)
     i_gain = information_gain(X_train, y_train, left_indices, right_indices)
     print(f"Feature: {feature_name}, information gain if we split the root node using this feature: {i_gain:.2f}")
-    
-
 
 # So, the best feature to split is indeed the Ear Shape. Run the code below to see the split in action. You do not need to understand the following code block. 
 
 # In[15]:
-
-
 tree = []
 build_tree_recursive(X_train, y_train, [0,1,2,3,4,5,6,7,8,9], "Root", max_depth=1, current_depth=0, tree = tree)
 generate_tree_viz([0,1,2,3,4,5,6,7,8,9], y_train, tree)
-
 
 # The process is **recursive**, which means we must perform these calculations for each node until we meet a stopping criteria:
 # 
@@ -245,11 +204,8 @@ generate_tree_viz([0,1,2,3,4,5,6,7,8,9], y_train, tree)
 # The final tree looks like this:
 
 # In[16]:
-
-
 tree = []
 build_tree_recursive(X_train, y_train, [0,1,2,3,4,5,6,7,8,9], "Root", max_depth=2, current_depth=0, tree = tree)
 generate_tree_viz([0,1,2,3,4,5,6,7,8,9], y_train, tree)
-
 
 # Congratulations! You completed the notebook!
