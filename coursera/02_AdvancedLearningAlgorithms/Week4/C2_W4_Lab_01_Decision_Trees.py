@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
-
 # # Ungraded Lab: Decision Trees
 
 # In this notebook you will visualize how a decision tree is splitted using information gain.
-# 
 # We will revisit the dataset used in the video lectures. The dataset is:
-
-# As you saw in the lectures, in a decision tree, we decide if a node will be split or not by looking at the **information gain** that split would give us. (Image of video IG)
-# 
+# As you saw in the lectures, in a decision tree, we decide if a node will be split or not by looking at the **information gain** 
+# that split would give us. (Image of video IG)
 # Where 
 # 
 # $$\text{Information Gain} = H(p_1^\text{node})- \left(w^{\text{left}}H\left(p_1^\text{left}\right) + w^{\text{right}}H\left(p_1^\text{right}\right)\right),$$
