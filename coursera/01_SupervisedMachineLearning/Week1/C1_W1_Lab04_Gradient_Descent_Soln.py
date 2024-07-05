@@ -18,19 +18,17 @@
 # - plotting routines in the lab_utils.py file in the local directory
 
 # In[1]:
-
-
 import math, copy
 import numpy as np
 import matplotlib.pyplot as plt
 plt.style.use('./deeplearning.mplstyle')
 from lab_utils_uni import plt_house_x, plt_contour_wgrad, plt_divergence, plt_gradients
 
-
 # <a name="toc_40291_2"></a>
 # # Problem Statement
 # 
-# Let's use the same two data points as before - a house with 1000 square feet sold for \\$300,000 and a house with 2000 square feet sold for \\$500,000.
+# Let's use the same two data points as before - a house with 1000 square feet sold for \\$300,000 and 
+# a house with 2000 square feet sold for \\$500,000.
 # 
 # | Size (1000 sqft)     | Price (1000s of dollars) |
 # | ----------------| ------------------------ |
@@ -39,23 +37,17 @@ from lab_utils_uni import plt_house_x, plt_contour_wgrad, plt_divergence, plt_gr
 # 
 
 # In[2]:
-
-
 # Load our data set
 x_train = np.array([1.0, 2.0])   #features
 y_train = np.array([300.0, 500.0])   #target value
-
 
 # <a name="toc_40291_2.0.1"></a>
 # ### Compute_Cost
 # This was developed in the last lab. We'll need it again here.
 
 # In[3]:
-
-
 #Function to calculate the cost
 def compute_cost(x, y, w, b):
-   
     m = x.shape[0] 
     cost = 0
     
@@ -66,12 +58,13 @@ def compute_cost(x, y, w, b):
 
     return total_cost
 
-
 # <a name="toc_40291_2.1"></a>
 # ## Gradient descent summary
 # So far in this course, you have developed a linear model that predicts $f_{w,b}(x^{(i)})$:
 # $$f_{w,b}(x^{(i)}) = wx^{(i)} + b \tag{1}$$
-# In linear regression, you utilize input training data to fit the parameters $w$,$b$ by minimizing a measure of the error between our predictions $f_{w,b}(x^{(i)})$ and the actual data $y^{(i)}$. The measure is called the $cost$, $J(w,b)$. In training you measure the cost over all of our training samples $x^{(i)},y^{(i)}$
+# In linear regression, you utilize input training data to fit the parameters $w$,$b$ by minimizing a measure of the error 
+# between our predictions $f_{w,b}(x^{(i)})$ and the actual data $y^{(i)}$. 
+# The measure is called the $cost$, $J(w,b)$. In training you measure the cost over all of our training samples $x^{(i)},y^{(i)}$
 # $$J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2\tag{2}$$ 
 
 # 
@@ -100,18 +93,18 @@ def compute_cost(x, y, w, b):
 # - `gradient_descent`, utilizing compute_gradient and compute_cost
 # 
 # Conventions:
-# - The naming of python variables containing partial derivatives follows this pattern,$\frac{\partial J(w,b)}{\partial b}$  will be `dj_db`.
+# - The naming of python variables containing partial derivatives follows this pattern,$\frac{\partial J(w,b)}{\partial b}$  
+# will be `dj_db`.
 # - w.r.t is With Respect To, as in partial derivative of $J(wb)$ With Respect To $b$.
 # 
 
 # <a name="toc_40291_2.3"></a>
 # ### compute_gradient
 # <a name='ex-01'></a>
-# `compute_gradient`  implements (4) and (5) above and returns $\frac{\partial J(w,b)}{\partial w}$,$\frac{\partial J(w,b)}{\partial b}$. The embedded comments describe the operations.
+# `compute_gradient`  implements (4) and (5) above and returns $\frac{\partial J(w,b)}{\partial w}$,$\frac{\partial J(w,b)}{\partial b}$. 
+# The embedded comments describe the operations.
 
 # In[4]:
-
-
 def compute_gradient(x, y, w, b): 
     """
     Computes the gradient for linear regression 
@@ -143,29 +136,37 @@ def compute_gradient(x, y, w, b):
 
 # <br/>
 
-# <img align="left" src="./images/C1_W1_Lab03_lecture_slopes.PNG"   style="width:340px;" > The lectures described how gradient descent utilizes the partial derivative of the cost with respect to a parameter at a point to update that parameter.   
-# Let's use our `compute_gradient` function to find and plot some partial derivatives of our cost function relative to one of the parameters, $w_0$.
+# <img align="left" src="./images/C1_W1_Lab03_lecture_slopes.PNG"   style="width:340px;" > 
+# The lectures described how gradient descent utilizes the partial derivative of the cost with respect to a parameter 
+# at a point to update that parameter.   
+# Let's use our `compute_gradient` function to find and plot some partial derivatives of our cost function relative 
+# to one of the parameters, $w_0$.
 # 
 
 # In[5]:
-
-
 plt_gradients(x_train,y_train, compute_cost, compute_gradient)
 plt.show()
 
-
-# Above, the left plot shows $\frac{\partial J(w,b)}{\partial w}$ or the slope of the cost curve relative to $w$ at three points. On the right side of the plot, the derivative is positive, while on the left it is negative. Due to the 'bowl shape', the derivatives will always lead gradient descent toward the bottom where the gradient is zero.
+# Above, the left plot shows $\frac{\partial J(w,b)}{\partial w}$ or the slope of the cost curve relative to $w$ at three points. 
+# On the right side of the plot, the derivative is positive, while on the left it is negative. Due to the 'bowl shape', 
+# the derivatives will always lead gradient descent toward the bottom where the gradient is zero.
 #  
-# The left plot has fixed $b=100$. Gradient descent will utilize both $\frac{\partial J(w,b)}{\partial w}$ and $\frac{\partial J(w,b)}{\partial b}$ to update parameters. The 'quiver plot' on the right provides a means of viewing the gradient of both parameters. The arrow sizes reflect the magnitude of the gradient at that point. The direction and slope of the arrow reflects the ratio of $\frac{\partial J(w,b)}{\partial w}$ and $\frac{\partial J(w,b)}{\partial b}$ at that point.
-# Note that the gradient points *away* from the minimum. Review equation (3) above. The scaled gradient is *subtracted* from the current value of $w$ or $b$. This moves the parameter in a direction that will reduce cost.
+# The left plot has fixed $b=100$. Gradient descent will utilize both $\frac{\partial J(w,b)}{\partial w}$ 
+# and $\frac{\partial J(w,b)}{\partial b}$ to update parameters. 
+# The 'quiver plot' on the right provides a means of viewing the gradient of both parameters. 
+# The arrow sizes reflect the magnitude of the gradient at that point. The direction and slope of the arrow reflects 
+# the ratio of $\frac{\partial J(w,b)}{\partial w}$ and $\frac{\partial J(w,b)}{\partial b}$ at that point.
+# Note that the gradient points *away* from the minimum. Review equation (3) above. 
+# The scaled gradient is *subtracted* from the current value of $w$ or $b$. 
+# This moves the parameter in a direction that will reduce cost.
 
 # <a name="toc_40291_2.5"></a>
 # ###  Gradient Descent
-# Now that gradients can be computed,  gradient descent, described in equation (3) above can be implemented below in `gradient_descent`. The details of the implementation are described in the comments. Below, you will utilize this function to find optimal values of $w$ and $b$ on the training data.
+# Now that gradients can be computed,  gradient descent, described in equation (3) above can be implemented below in `gradient_descent`. 
+# The details of the implementation are described in the comments. Below, you will utilize this function 
+# to find optimal values of $w$ and $b$ on the training data.
 
 # In[6]:
-
-
 def gradient_descent(x, y, w_in, b_in, alpha, num_iters, cost_function, gradient_function): 
     """
     Performs gradient descent to fit w,b. Updates w,b by taking 
@@ -215,8 +216,6 @@ def gradient_descent(x, y, w_in, b_in, alpha, num_iters, cost_function, gradient
 
 
 # In[7]:
-
-
 # initialize parameters
 w_init = 0
 b_init = 0
@@ -233,15 +232,17 @@ print(f"(w,b) found by gradient descent: ({w_final:8.4f},{b_final:8.4f})")
 # Take a moment and note some characteristics of the gradient descent process printed above.  
 # 
 # - The cost starts large and rapidly declines as described in the slide from the lecture.
-# - The partial derivatives, `dj_dw`, and `dj_db` also get smaller, rapidly at first and then more slowly. As shown in the diagram from the lecture, as the process nears the 'bottom of the bowl' progress is slower due to the smaller value of the derivative at that point.
+# - The partial derivatives, `dj_dw`, and `dj_db` also get smaller, rapidly at first and then more slowly. 
+# As shown in the diagram from the lecture, as the process nears the 'bottom of the bowl' progress is slower 
+# due to the smaller value of the derivative at that point.
 # - progress slows though the learning rate, alpha, remains fixed
 
 # ### Cost versus iterations of gradient descent 
-# A plot of cost versus iterations is a useful measure of progress in gradient descent. Cost should always decrease in successful runs. The change in cost is so rapid initially, it is useful to plot the initial decent on a different scale than the final descent. In the plots below, note the scale of cost on the axes and the iteration step.
+# A plot of cost versus iterations is a useful measure of progress in gradient descent. Cost should always decrease in successful runs. 
+# The change in cost is so rapid initially, it is useful to plot the initial decent on a different scale than the final descent. 
+# In the plots below, note the scale of cost on the axes and the iteration step.
 
 # In[ ]:
-
-
 # plot cost versus iteration  
 fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=True, figsize=(12,4))
 ax1.plot(J_hist[:100])
@@ -253,40 +254,37 @@ plt.show()
 
 
 # ### Predictions
-# Now that you have discovered the optimal values for the parameters $w$ and $b$, you can now use the model to predict housing values based on our learned parameters. As expected, the predicted values are nearly the same as the training values for the same housing. Further, the value not in the prediction is in line with the expected value.
+# Now that you have discovered the optimal values for the parameters $w$ and $b$, you can now use the model 
+# to predict housing values based on our learned parameters. 
+# As expected, the predicted values are nearly the same as the training values for the same housing. 
+# Further, the value not in the prediction is in line with the expected value.
 
 # In[ ]:
-
-
 print(f"1000 sqft house prediction {w_final*1.0 + b_final:0.1f} Thousand dollars")
 print(f"1200 sqft house prediction {w_final*1.2 + b_final:0.1f} Thousand dollars")
 print(f"2000 sqft house prediction {w_final*2.0 + b_final:0.1f} Thousand dollars")
 
-
 # <a name="toc_40291_2.6"></a>
 # ## Plotting
-# You can show the progress of gradient descent during its execution by plotting the cost over iterations on a contour plot of the cost(w,b). 
+# You can show the progress of gradient descent during its execution by plotting the cost over iterations 
+# on a contour plot of the cost(w,b). 
 
 # In[ ]:
-
-
 fig, ax = plt.subplots(1,1, figsize=(12, 6))
 plt_contour_wgrad(x_train, y_train, p_hist, ax)
 
-
-# Above, the contour plot shows the $cost(w,b)$ over a range of $w$ and $b$. Cost levels are represented by the rings. Overlayed, using red arrows, is the path of gradient descent. Here are some things to note:
+# Above, the contour plot shows the $cost(w,b)$ over a range of $w$ and $b$. Cost levels are represented by the rings. 
+# Overlayed, using red arrows, is the path of gradient descent. Here are some things to note:
 # - The path makes steady (monotonic) progress toward its goal.
 # - initial steps are much larger than the steps near the goal.
 
-# **Zooming in**, we can see that final steps of gradient descent. Note the distance between steps shrinks as the gradient approaches zero.
+# **Zooming in**, we can see that final steps of gradient descent. 
+# Note the distance between steps shrinks as the gradient approaches zero.
 
 # In[ ]:
-
-
 fig, ax = plt.subplots(1,1, figsize=(12, 4))
 plt_contour_wgrad(x_train, y_train, p_hist, ax, w_range=[180, 220, 0.5], b_range=[80, 120, 0.5],
             contours=[1,5,10,20],resolution=0.5)
-
 
 # <a name="toc_40291_2.7.1"></a>
 # ### Increased Learning Rate
@@ -294,13 +292,13 @@ plt_contour_wgrad(x_train, y_train, p_hist, ax, w_range=[180, 220, 0.5], b_range
 # <figure>
 #  <img align="left", src="./images/C1_W1_Lab03_alpha_too_big.PNG"   style="width:340px;height:240px;" >
 # </figure>
-# In the lecture, there was a discussion related to the proper value of the learning rate, $\alpha$ in equation(3). The larger $\alpha$ is, the faster gradient descent will converge to a solution. But, if it is too large, gradient descent will diverge. Above you have an example of a solution which converges nicely.
+# In the lecture, there was a discussion related to the proper value of the learning rate, $\alpha$ in equation(3). 
+# The larger $\alpha$ is, the faster gradient descent will converge to a solution. 
+# But, if it is too large, gradient descent will diverge. Above you have an example of a solution which converges nicely.
 # 
 # Let's try increasing the value of  $\alpha$ and see what happens:
 
 # In[ ]:
-
-
 # initialize parameters
 w_init = 0
 b_init = 0
@@ -312,17 +310,18 @@ w_final, b_final, J_hist, p_hist = gradient_descent(x_train ,y_train, w_init, b_
                                                     iterations, compute_cost, compute_gradient)
 
 
-# Above, $w$ and $b$ are bouncing back and forth between positive and negative with the absolute value increasing with each iteration. Further, each iteration $\frac{\partial J(w,b)}{\partial w}$ changes sign and cost is increasing rather than decreasing. This is a clear sign that the *learning rate is too large* and the solution is diverging. 
+# Above, $w$ and $b$ are bouncing back and forth between positive and negative with the absolute value increasing with each iteration. 
+# Further, each iteration $\frac{\partial J(w,b)}{\partial w}$ changes sign and cost is increasing rather than decreasing. 
+# This is a clear sign that the *learning rate is too large* and the solution is diverging. 
 # Let's visualize this with a plot.
 
 # In[ ]:
-
-
 plt_divergence(p_hist, J_hist,x_train, y_train)
 plt.show()
 
-
-# Above, the left graph shows $w$'s progression over the first few steps of gradient descent. $w$ oscillates from positive to negative and cost grows rapidly. Gradient Descent is operating on both $w$ and $b$ simultaneously, so one needs the 3-D plot on the right for the complete picture.
+# Above, the left graph shows $w$'s progression over the first few steps of gradient descent. 
+# $w$ oscillates from positive to negative and cost grows rapidly. 
+# Gradient Descent is operating on both $w$ and $b$ simultaneously, so one needs the 3-D plot on the right for the complete picture.
 
 # 
 # ## Congratulations!
@@ -333,9 +332,3 @@ plt.show()
 # - completed a gradient descent routine
 # - utilized gradient descent to find parameters
 # - examined the impact of sizing the learning rate
-
-# In[ ]:
-
-
-
-

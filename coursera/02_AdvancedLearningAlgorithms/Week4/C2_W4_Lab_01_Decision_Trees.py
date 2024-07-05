@@ -23,9 +23,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from utils import *
+from IPython import get_ipython
 
 # In[4]:
 #get_ipython().run_line_magic('matplotlib', 'widget')
+#%matplotlib widget
 _ = plot_entropy()
 
 # In[ ]:
