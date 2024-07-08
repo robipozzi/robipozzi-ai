@@ -35,14 +35,11 @@
 # - Matplotlib, a popular library for plotting data
 
 # In[1]:
-
-
 import copy, math
 import numpy as np
 import matplotlib.pyplot as plt
 plt.style.use('./deeplearning.mplstyle')
 np.set_printoptions(precision=2)  # reduced display precision on numpy arrays
-
 
 # <a name="toc_15456_1.3"></a>
 # ## 1.3 Notation
@@ -61,13 +58,16 @@ np.set_printoptions(precision=2)  # reduced display precision on numpy arrays
 # | n | number of features in each example | `n`|
 # |  $\mathbf{w}$  |  parameter: weight,                       | `w`    |
 # |  $b$           |  parameter: bias                                           | `b`    |     
-# | $f_{\mathbf{w},b}(\mathbf{x}^{(i)})$ | The result of the model evaluation at $\mathbf{x^{(i)}}$ parameterized by $\mathbf{w},b$: $f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)}+b$  | `f_wb` | 
+# | $f_{\mathbf{w},b}(\mathbf{x}^{(i)})$ | The result of the model evaluation at $\mathbf{x^{(i)}}$ parameterized by 
+# $\mathbf{w},b$: $f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)}+b$  | `f_wb` | 
 # 
 
 # <a name="toc_15456_2"></a>
 # # 2 Problem Statement
 # 
-# You will use the motivating example of housing price prediction. The training dataset contains three examples with four features (size, bedrooms, floors and, age) shown in the table below.  Note that, unlike the earlier labs, size is in sqft rather than 1000 sqft. This causes an issue, which you will solve in the next lab!
+# You will use the motivating example of housing price prediction. 
+# The training dataset contains three examples with four features (size, bedrooms, floors and, age) shown in the table below.  
+# Note that, unlike the earlier labs, size is in sqft rather than 1000 sqft. This causes an issue, which you will solve in the next lab!
 # 
 # | Size (sqft) | Number of Bedrooms  | Number of floors | Age of  Home | Price (1000s dollars)  |   
 # | ----------------| ------------------- |----------------- |--------------|-------------- |  
@@ -75,7 +75,8 @@ np.set_printoptions(precision=2)  # reduced display precision on numpy arrays
 # | 1416            | 3                   | 2                | 40           | 232           |  
 # | 852             | 2                   | 1                | 35           | 178           |  
 # 
-# You will build a linear regression model using these values so you can then predict the price for other houses. For example, a house with 1200 sqft, 3 bedrooms, 1 floor, 40 years old.  
+# You will build a linear regression model using these values so you can then predict the price for other houses. 
+# For example, a house with 1200 sqft, 3 bedrooms, 1 floor, 40 years old.  
 # 
 # Please run the following code cell to create your `X_train` and `y_train` variables.
 
@@ -86,7 +87,9 @@ y_train = np.array([460, 232, 178])
 
 # <a name="toc_15456_2.1"></a>
 # ## 2.1 Matrix X containing our examples
-# Similar to the table above, examples are stored in a NumPy matrix `X_train`. Each row of the matrix represents one example. When you have $m$ training examples ( $m$ is three in our example), and there are $n$ features (four in our example), $\mathbf{X}$ is a matrix with dimensions ($m$, $n$) (m rows, n columns).
+# Similar to the table above, examples are stored in a NumPy matrix `X_train`. Each row of the matrix represents one example. 
+# When you have $m$ training examples ( $m$ is three in our example), and there are $n$ features (four in our example), 
+# $\mathbf{X}$ is a matrix with dimensions ($m$, $n$) (m rows, n columns).
 # 
 # 
 # $$\mathbf{X} = 
@@ -99,7 +102,8 @@ y_train = np.array([460, 232, 178])
 # $$
 # notation:
 # - $\mathbf{x}^{(i)}$ is vector containing example i. $\mathbf{x}^{(i)}$ $ = (x^{(i)}_0, x^{(i)}_1, \cdots,x^{(i)}_{n-1})$
-# - $x^{(i)}_j$ is element j in example i. The superscript in parenthesis indicates the example number while the subscript represents an element.  
+# - $x^{(i)}_j$ is element j in example i. The superscript in parenthesis indicates the example number while 
+# the subscript represents an element.  
 # 
 # Display the input data.
 
@@ -128,7 +132,8 @@ print(y_train)
 # $$
 # * $b$ is a scalar parameter.  
 
-# For demonstration, $\mathbf{w}$ and $b$ will be loaded with some initial selected values that are near the optimal. $\mathbf{w}$ is a 1-D NumPy vector.
+# For demonstration, $\mathbf{w}$ and $b$ will be loaded with some initial selected values that are near the optimal. 
+# $\mathbf{w}$ is a 1-D NumPy vector.
 
 # In[4]:
 b_init = 785.1811367994083
@@ -149,7 +154,9 @@ print(f"w_init shape: {w_init.shape}, b_init type: {type(b_init)}")
 
 # <a name="toc_15456_3.1"></a>
 # ## 3.1 Single Prediction element by element
-# Our previous prediction multiplied one feature value by one parameter and added a bias parameter. A direct extension of our previous implementation of prediction to multiple features would be to implement (1) above using loop over each element, performing the multiply with its parameter and then adding the bias parameter at the end.
+# Our previous prediction multiplied one feature value by one parameter and added a bias parameter. 
+# A direct extension of our previous implementation of prediction to multiple features would be to implement (1) above 
+# using loop over each element, performing the multiply with its parameter and then adding the bias parameter at the end.
 # 
 
 # In[ ]:
@@ -173,7 +180,6 @@ def predict_single_loop(x, w, b):
     p = p + b                
     return p
 
-
 # In[ ]:
 # get a row from our training data
 x_vec = X_train[0,:]
@@ -189,9 +195,11 @@ print(f"f_wb shape {f_wb.shape}, prediction: {f_wb}")
 # <a name="toc_15456_3.2"></a>
 # ## 3.2 Single Prediction, vector
 # 
-# Noting that equation (1) above can be implemented using the dot product as in (2) above. We can make use of vector operations to speed up predictions.
+# Noting that equation (1) above can be implemented using the dot product as in (2) above. 
+# We can make use of vector operations to speed up predictions.
 # 
-# Recall from the Python/Numpy lab that NumPy `np.dot()`[[link](https://numpy.org/doc/stable/reference/generated/numpy.dot.html)] can be used to perform a vector dot product. 
+# Recall from the Python/Numpy lab that NumPy `np.dot()`[[link](https://numpy.org/doc/stable/reference/generated/numpy.dot.html)] 
+# can be used to perform a vector dot product. 
 
 # In[5]:
 def predict(x, w, b): 
@@ -219,7 +227,9 @@ f_wb = predict(x_vec,w_init, b_init)
 print(f"f_wb shape {f_wb.shape}, prediction: {f_wb}")
 
 
-# The results and shapes are the same as the previous version which used looping. Going forward, `np.dot` will be used for these operations. The prediction is now a single statement. Most routines will implement it directly rather than calling a separate predict routine.
+# The results and shapes are the same as the previous version which used looping. 
+# Going forward, `np.dot` will be used for these operations. The prediction is now a single statement. 
+# Most routines will implement it directly rather than calling a separate predict routine.
 
 # <a name="toc_15456_4"></a>
 # # 4 Compute Cost With Multiple Variables
@@ -231,7 +241,8 @@ print(f"f_wb shape {f_wb.shape}, prediction: {f_wb}")
 # 
 # In contrast to previous labs, $\mathbf{w}$ and $\mathbf{x}^{(i)}$ are vectors rather than scalars supporting multiple features.
 
-# Below is an implementation of equations (3) and (4). Note that this uses a *standard pattern for this course* where a for loop over all `m` examples is used.
+# Below is an implementation of equations (3) and (4). 
+# Note that this uses a *standard pattern for this course* where a for loop over all `m` examples is used.
 
 # In[7]:
 def compute_cost(X, y, w, b): 
@@ -260,7 +271,6 @@ def compute_cost(X, y, w, b):
 cost = compute_cost(X_train, y_train, w_init, b_init)
 print(f'Cost at optimal w : {cost}')
 
-
 # **Expected Result**: Cost at optimal w : 1.5578904045996674e-12
 
 # <a name="toc_15456_5"></a>
@@ -288,7 +298,8 @@ print(f'Cost at optimal w : {cost}')
 
 # <a name="toc_15456_5.1"></a>
 # ## 5.1 Compute Gradient with Multiple Variables
-# An implementation for calculating the equations (6) and (7) is below. There are many ways to implement this. In this version, there is an
+# An implementation for calculating the equations (6) and (7) is below. There are many ways to implement this. 
+# In this version, there is an
 # - outer loop over all m examples. 
 #     - $\frac{\partial J(\mathbf{w},b)}{\partial b}$ for the example can be computed directly and accumulated
 #     - in a second loop over all n features:
@@ -387,7 +398,6 @@ def gradient_descent(X, y, w_in, b_in, cost_function, gradient_function, alpha, 
 
 
 # In the next cell you will test the implementation. 
-
 # In[13]:
 # initialize parameters
 initial_w = np.zeros_like(w_init)
@@ -420,7 +430,8 @@ ax1.set_xlabel('iteration step')   ;  ax2.set_xlabel('iteration step')
 plt.show()
 
 
-# *These results are not inspiring*! Cost is still declining and our predictions are not very accurate. The next lab will explore how to improve on this.
+# *These results are not inspiring*! Cost is still declining and our predictions are not very accurate. 
+# The next lab will explore how to improve on this.
 
 # 
 # <a name="toc_15456_6"></a>

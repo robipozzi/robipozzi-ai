@@ -3,7 +3,8 @@
 
 # # Optional Lab: Linear Regression using Scikit-Learn
 
-# There is an open-source, commercially usable machine learning toolkit called [scikit-learn](https://scikit-learn.org/stable/index.html). This toolkit contains implementations of many of the algorithms that you will work with in this course.
+# There is an open-source, commercially usable machine learning toolkit called [scikit-learn](https://scikit-learn.org/stable/index.html). 
+# This toolkit contains implementations of many of the algorithms that you will work with in this course.
 # 
 # 
 
@@ -28,13 +29,11 @@ plt.style.use('./deeplearning.mplstyle')
 # Scikit-learn has a gradient descent regression model [sklearn.linear_model.SGDRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html#examples-using-sklearn-linear-model-sgdregressor).  Like your previous implementation of gradient descent, this model performs best with normalized inputs. [sklearn.preprocessing.StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler) will perform z-score normalization as in a previous lab. Here it is referred to as 'standard score'.
 
 # ### Load the data set
-
 # In[2]:
 X_train, y_train = load_house_data()
 X_features = ['size(sqft)','bedrooms','floors','age']
 
 # ### Scale/normalize the training data
-
 # In[3]:
 scaler = StandardScaler()
 X_norm = scaler.fit_transform(X_train)
@@ -51,7 +50,8 @@ print(f"number of iterations completed: {sgdr.n_iter_}, number of weight updates
 
 
 # ### View parameters
-# Note, the parameters are associated with the *normalized* input data. The fit parameters are very close to those found in the previous lab with this data.
+# Note, the parameters are associated with the *normalized* input data. 
+# The fit parameters are very close to those found in the previous lab with this data.
 
 # In[5]:
 b_norm = sgdr.intercept_

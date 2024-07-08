@@ -19,8 +19,10 @@
 #   - [ 2.6 Learning parameters using batch gradient descent ](#2.6)
 # 
 
-# _**NOTE:** To prevent errors from the autograder, you are not allowed to edit or delete non-graded cells in this notebook . Please also refrain from adding any new cells. 
-# **Once you have passed this assignment** and want to experiment with any of the non-graded code, you may follow the instructions at the bottom of this notebook._
+# _**NOTE:** To prevent errors from the autograder, you are not allowed to edit or delete non-graded cells in this notebook. 
+# Please also refrain from adding any new cells. 
+# **Once you have passed this assignment** and want to experiment with any of the non-graded code, 
+# you may follow the instructions at the bottom of this notebook._
 
 # <a name="1"></a>
 # ## 1 - Packages 
@@ -109,7 +111,9 @@ print ('Number of training examples (m):', len(x_train))
 # 
 # It is often useful to understand the data by visualizing it. 
 # - For this dataset, you can use a scatter plot to visualize the data, since it has only two properties to plot (profit and population). 
-# - Many other problems that you will encounter in real life have more than two properties (for example, population, average household income, monthly profits, monthly sales).When you have more than two properties, you can still use a scatter plot to see the relationship between each pair of properties.
+# - Many other problems that you will encounter in real life have more than two properties 
+#   (for example, population, average household income, monthly profits, monthly sales).
+#   When you have more than two properties, you can still use a scatter plot to see the relationship between each pair of properties.
 # 
 
 # In[6]:
@@ -127,14 +131,16 @@ plt.show()
 
 
 # Your goal is to build a linear regression model to fit this data.
-# - With this model, you can then input a new city's population, and have the model estimate your restaurant's potential monthly profits for that city.
+# - With this model, you can then input a new city's population, and have the model estimate your restaurant's potential monthly profits 
+#   for that city.
 
 # <a name="4"></a>
 # ## 4 - Refresher on linear regression
 # 
 # In this practice lab, you will fit the linear regression parameters $(w,b)$ to your dataset.
-# - The model function for linear regression, which is a function that maps from `x` (city population) to `y` (your restaurant's monthly profit for that city) is represented as 
-#     $$f_{w,b}(x) = wx + b$$
+# - The model function for linear regression, 
+#   which is a function that maps from `x` (city population) to `y` (your restaurant's monthly profit for that city) 
+#   represented as $$f_{w,b}(x) = wx + b$$
 #     
 # 
 # - To train a linear regression model, you want to find the best $(w,b)$ parameters that fit your dataset.  
@@ -146,16 +152,20 @@ plt.show()
 # 
 # 
 # - To find the values $(w,b)$ that gets the smallest possible cost $J(w,b)$, you can use a method called **gradient descent**. 
-#   - With each step of gradient descent, your parameters $(w,b)$ come closer to the optimal values that will achieve the lowest cost $J(w,b)$.
+#   - With each step of gradient descent, your parameters $(w,b)$ come closer to the optimal values 
+#       that will achieve the lowest cost $J(w,b)$.
 #   
 # 
-# - The trained linear regression model can then take the input feature $x$ (city population) and output a prediction $f_{w,b}(x)$ (predicted monthly profit for a restaurant in that city).
+# - The trained linear regression model can then take the input feature $x$ (city population) and 
+#   output a prediction $f_{w,b}(x)$ (predicted monthly profit for a restaurant in that city).
 
 # <a name="5"></a>
 # ## 5 - Compute Cost
 # 
-# Gradient descent involves repeated steps to adjust the value of your parameter $(w,b)$ to gradually get a smaller and smaller cost $J(w,b)$.
-# - At each step of gradient descent, it will be helpful for you to monitor your progress by computing the cost $J(w,b)$ as $(w,b)$ gets updated. 
+# Gradient descent involves repeated steps to adjust the value of your parameter $(w,b)$ to gradually get a smaller and 
+# smaller cost $J(w,b)$.
+# - At each step of gradient descent, it will be helpful for you to monitor your progress by computing the cost $J(w,b)$ as $(w,b)$ 
+#   gets updated. 
 # - In this section, you will implement a function to calculate $J(w,b)$ so that you can check the progress of your gradient descent implementation.
 # 
 # #### Cost function
@@ -163,7 +173,8 @@ plt.show()
 # 
 # $$J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2$$ 
 # 
-# - You can think of $f_{w,b}(x^{(i)})$ as the model's prediction of your restaurant's profit, as opposed to $y^{(i)}$, which is the actual profit that is recorded in the data.
+# - You can think of $f_{w,b}(x^{(i)})$ as the model's prediction of your restaurant's profit, as opposed to $y^{(i)}$, 
+#   which is the actual profit that is recorded in the data.
 # - $m$ is the number of training examples in the dataset
 # 
 # #### Model prediction
@@ -240,10 +251,14 @@ def compute_cost(x, y, w, b):
 #         h = h + 2*i
 #     ```
 #   
-#    * In this case, you can iterate over all the examples in `x` using a for loop and add the `cost` from each iteration to a variable (`cost_sum`) initialized outside the loop.
+#    * In this case, you can iterate over all the examples in `x` using a for loop and add the `cost` from each iteration 
+#       to a variable (`cost_sum`) initialized outside the loop.
 # 
 #    * Then, you can return the `total_cost` as `cost_sum` divided by `2m`.
-#    * If you are new to Python, please check that your code is properly indented with consistent spaces or tabs. Otherwise, it might produce a different output or raise an `IndentationError: unexpected indent` error. You can refer to [this topic](https://community.deeplearning.ai/t/indentation-in-python-indentationerror-unexpected-indent/159398) in our community for details.
+#    * If you are new to Python, please check that your code is properly indented with consistent spaces or tabs. 
+#       Otherwise, it might produce a different output or raise an `IndentationError: unexpected indent` error. 
+#       You can refer to [this topic](https://community.deeplearning.ai/t/indentation-in-python-indentationerror-unexpected-indent/159398) 
+#       in our community for details.
 # 
 #     <details>
 #           <summary><font size="2" color="darkblue"><b> Click for more hints</b></font></summary>
@@ -283,7 +298,8 @@ def compute_cost(x, y, w, b):
 #     
 #     <details>
 #           <summary><font size="2" color="darkblue"><b>Hint to calculate f_wb</b></font></summary>
-#            &emsp; &emsp; For scalars $a$, $b$ and $c$ (<code>x[i]</code>, <code>w</code> and <code>b</code> are all scalars), you can calculate the equation $h = ab + c$ in code as <code>h = a * b + c</code>
+#            &emsp; &emsp; For scalars $a$, $b$ and $c$ (<code>x[i]</code>, <code>w</code> and <code>b</code> are all scalars), 
+#               you can calculate the equation $h = ab + c$ in code as <code>h = a * b + c</code>
 #           <details>
 #               <summary><font size="2" color="blue"><b>&emsp; &emsp; More hints to calculate f</b></font></summary>
 #                &emsp; &emsp; You can compute f_wb as <code>f_wb = w * x[i] + b </code>
