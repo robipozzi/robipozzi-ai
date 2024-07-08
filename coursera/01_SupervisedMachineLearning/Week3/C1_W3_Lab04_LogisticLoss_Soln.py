@@ -8,8 +8,6 @@
 # - explore the logistic loss function
 
 # In[2]:
-
-
 import numpy as np
 get_ipython().run_line_magic('matplotlib', 'widget')
 import matplotlib.pyplot as plt
@@ -30,8 +28,6 @@ plt.style.use('./deeplearning.mplstyle')
 # Recall, the squared error cost had the nice property that following the derivative of the cost leads to the minimum.
 
 # In[3]:
-
-
 soup_bowl()
 
 
@@ -40,8 +36,6 @@ soup_bowl()
 # Here is our training data:
 
 # In[4]:
-
-
 x_train = np.array([0., 1, 2, 3, 4, 5],dtype=np.longdouble)
 y_train = np.array([0,  0, 0, 1, 1, 1],dtype=np.longdouble)
 plt_simple_example(x_train, y_train)
@@ -55,8 +49,6 @@ plt_simple_example(x_train, y_train)
 # 
 
 # In[4]:
-
-
 plt.close('all')
 plt_logistic_squared_error(x_train,y_train)
 plt.show()
@@ -96,8 +88,6 @@ plt.show()
 # The defining feature of this loss function is the fact that it uses two separate curves. One for the case when the target is zero or ($y=0$) and another for when the target is one ($y=1$). Combined, these curves provide the behavior useful for a loss function, namely, being zero when the prediction matches the target and rapidly increasing in value as the prediction differs from the target. Consider the curves below:
 
 # In[5]:
-
-
 plt_two_logistic_loss_curves()
 
 
@@ -125,8 +115,6 @@ plt_two_logistic_loss_curves()
 # OK, with this new logistic loss function, a cost function can be produced that incorporates the loss from all the examples. This will be the topic of the next lab. For now, let's take a look at the cost vs parameters curve for the simple example we considered above:
 
 # In[ ]:
-
-
 plt.close('all')
 cst = plt_logistic_cost(x_train,y_train)
 
@@ -139,9 +127,3 @@ cst = plt_logistic_cost(x_train,y_train)
 #  - developed and examined the logistic loss function which **is** suitable for classification tasks.
 # 
 # 
-
-# In[ ]:
-
-
-
-

@@ -21,7 +21,7 @@
 
 # In[6]:
 import numpy as np
-get_ipython().run_line_magic('matplotlib', 'widget')
+#get_ipython().run_line_magic('matplotlib', 'widget')
 #%matplotlib widget
 import matplotlib.pyplot as plt
 from lab_utils_uni import plt_intuition, plt_stationary, plt_update_onclick, soup_bowl

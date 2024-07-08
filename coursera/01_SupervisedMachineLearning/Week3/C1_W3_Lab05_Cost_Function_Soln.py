@@ -8,10 +8,8 @@
 # - examine the implementation and utilize the cost function for logistic regression.
 
 # In[1]:
-
-
 import numpy as np
-get_ipython().run_line_magic('matplotlib', 'widget')
+#get_ipython().run_line_magic('matplotlib', 'widget')
 import matplotlib.pyplot as plt
 from lab_utils_common import  plot_data, sigmoid, dlc
 plt.style.use('./deeplearning.mplstyle')
@@ -21,17 +19,12 @@ plt.style.use('./deeplearning.mplstyle')
 # Let's start with the same dataset as was used in the decision boundary lab.
 
 # In[2]:
-
-
 X_train = np.array([[0.5, 1.5], [1,1], [1.5, 0.5], [3, 0.5], [2, 2], [1, 2.5]])  #(m,n)
 y_train = np.array([0, 0, 0, 1, 1, 1])                                           #(m,)
-
 
 # We will use a helper function to plot this data. The data points with label $y=1$ are shown as red crosses, while the data points with label $y=0$ are shown as blue circles.
 
 # In[3]:
-
-
 fig,ax = plt.subplots(1,1,figsize=(4,4))
 plot_data(X_train, y_train, ax)
 
@@ -75,8 +68,6 @@ plt.show()
 # 
 
 # In[4]:
-
-
 def compute_cost_logistic(X, y, w, b):
     """
     Computes cost
@@ -105,12 +96,9 @@ def compute_cost_logistic(X, y, w, b):
 # Check the implementation of the cost function using the cell below.
 
 # In[5]:
-
-
 w_tmp = np.array([1,1])
 b_tmp = -3
 print(compute_cost_logistic(X_train, y_train, w_tmp, b_tmp))
-
 
 # **Expected output**: 0.3668667864055175
 
@@ -127,8 +115,6 @@ print(compute_cost_logistic(X_train, y_train, w_tmp, b_tmp))
 # * For $b = -4, w_0 = 1, w_1 = 1$, we'll plot $-4 + x_0+x_1 = 0$ (shown in magenta)
 
 # In[ ]:
-
-
 import matplotlib.pyplot as plt
 
 # Choose values between 0 and 6
@@ -179,9 +165,3 @@ print("Cost for b = -4 : ", compute_cost_logistic(X_train, y_train, w_array2, b_
 
 # ## Congratulations!
 # In this lab you examined and utilized the cost function for logistic regression.
-
-# In[ ]:
-
-
-
-

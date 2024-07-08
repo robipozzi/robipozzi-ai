@@ -80,8 +80,6 @@ np.set_printoptions(precision=2)  # reduced display precision on numpy arrays
 # Please run the following code cell to create your `X_train` and `y_train` variables.
 
 # In[2]:
-
-
 X_train = np.array([[2104, 5, 1, 45], [1416, 3, 2, 40], [852, 2, 1, 35]])
 y_train = np.array([460, 232, 178])
 
@@ -106,8 +104,6 @@ y_train = np.array([460, 232, 178])
 # Display the input data.
 
 # In[3]:
-
-
 # data is stored in numpy array/matrix
 print(f"X Shape: {X_train.shape}, X Type:{type(X_train)})")
 print(X_train)
@@ -135,8 +131,6 @@ print(y_train)
 # For demonstration, $\mathbf{w}$ and $b$ will be loaded with some initial selected values that are near the optimal. $\mathbf{w}$ is a 1-D NumPy vector.
 
 # In[4]:
-
-
 b_init = 785.1811367994083
 w_init = np.array([ 0.39133535, 18.75376741, -53.36032453, -26.42131618])
 print(f"w_init shape: {w_init.shape}, b_init type: {type(b_init)}")
@@ -159,8 +153,6 @@ print(f"w_init shape: {w_init.shape}, b_init type: {type(b_init)}")
 # 
 
 # In[ ]:
-
-
 def predict_single_loop(x, w, b): 
     """
     single predict using linear regression
@@ -183,8 +175,6 @@ def predict_single_loop(x, w, b):
 
 
 # In[ ]:
-
-
 # get a row from our training data
 x_vec = X_train[0,:]
 print(f"x_vec shape {x_vec.shape}, x_vec value: {x_vec}")
@@ -204,8 +194,6 @@ print(f"f_wb shape {f_wb.shape}, prediction: {f_wb}")
 # Recall from the Python/Numpy lab that NumPy `np.dot()`[[link](https://numpy.org/doc/stable/reference/generated/numpy.dot.html)] can be used to perform a vector dot product. 
 
 # In[5]:
-
-
 def predict(x, w, b): 
     """
     single predict using linear regression
@@ -222,8 +210,6 @@ def predict(x, w, b):
 
 
 # In[6]:
-
-
 # get a row from our training data
 x_vec = X_train[0,:]
 print(f"x_vec shape {x_vec.shape}, x_vec value: {x_vec}")
@@ -248,8 +234,6 @@ print(f"f_wb shape {f_wb.shape}, prediction: {f_wb}")
 # Below is an implementation of equations (3) and (4). Note that this uses a *standard pattern for this course* where a for loop over all `m` examples is used.
 
 # In[7]:
-
-
 def compute_cost(X, y, w, b): 
     """
     compute cost
@@ -272,8 +256,6 @@ def compute_cost(X, y, w, b):
 
 
 # In[8]:
-
-
 # Compute and display cost using our pre-chosen optimal parameters. 
 cost = compute_cost(X_train, y_train, w_init, b_init)
 print(f'Cost at optimal w : {cost}')
@@ -314,8 +296,6 @@ print(f'Cost at optimal w : {cost}')
 #    
 
 # In[10]:
-
-
 def compute_gradient(X, y, w, b): 
     """
     Computes the gradient for linear regression 
@@ -345,8 +325,6 @@ def compute_gradient(X, y, w, b):
 
 
 # In[11]:
-
-
 #Compute and display gradient 
 tmp_dj_db, tmp_dj_dw = compute_gradient(X_train, y_train, w_init, b_init)
 print(f'dj_db at initial w,b: {tmp_dj_db}')
@@ -363,8 +341,6 @@ print(f'dj_dw at initial w,b: \n {tmp_dj_dw}')
 # The routine below implements equation (5) above.
 
 # In[12]:
-
-
 def gradient_descent(X, y, w_in, b_in, cost_function, gradient_function, alpha, num_iters): 
     """
     Performs batch gradient descent to learn w and b. Updates w and b by taking 
@@ -413,8 +389,6 @@ def gradient_descent(X, y, w_in, b_in, cost_function, gradient_function, alpha, 
 # In the next cell you will test the implementation. 
 
 # In[13]:
-
-
 # initialize parameters
 initial_w = np.zeros_like(w_init)
 initial_b = 0.
@@ -422,9 +396,7 @@ initial_b = 0.
 iterations = 1000
 alpha = 5.0e-7
 # run gradient descent 
-w_final, b_final, J_hist = gradient_descent(X_train, y_train, initial_w, initial_b,
-                                                    compute_cost, compute_gradient, 
-                                                    alpha, iterations)
+w_final, b_final, J_hist = gradient_descent(X_train, y_train, initial_w, initial_b, compute_cost, compute_gradient, alpha, iterations)
 print(f"b,w found by gradient descent: {b_final:0.2f},{w_final} ")
 m,_ = X_train.shape
 for i in range(m):
@@ -438,8 +410,6 @@ for i in range(m):
 # prediction: 171.47, target value: 178  
 
 # In[ ]:
-
-
 # plot cost versus iteration  
 fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=True, figsize=(12, 4))
 ax1.plot(J_hist)

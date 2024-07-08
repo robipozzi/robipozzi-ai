@@ -133,7 +133,6 @@ def compute_gradient(x, y, w, b):
         
     return dj_dw, dj_db
 
-
 # <br/>
 
 # <img align="left" src="./images/C1_W1_Lab03_lecture_slopes.PNG"   style="width:340px;" > 
@@ -141,10 +140,9 @@ def compute_gradient(x, y, w, b):
 # at a point to update that parameter.   
 # Let's use our `compute_gradient` function to find and plot some partial derivatives of our cost function relative 
 # to one of the parameters, $w_0$.
-# 
 
 # In[5]:
-plt_gradients(x_train,y_train, compute_cost, compute_gradient)
+plt_gradients(x_train, y_train, compute_cost, compute_gradient)
 plt.show()
 
 # Above, the left plot shows $\frac{\partial J(w,b)}{\partial w}$ or the slope of the cost curve relative to $w$ at three points. 
@@ -214,7 +212,6 @@ def gradient_descent(x, y, w_in, b_in, alpha, num_iters, cost_function, gradient
  
     return w, b, J_history, p_history #return w and J,w history for graphing
 
-
 # In[7]:
 # initialize parameters
 w_init = 0
@@ -223,10 +220,8 @@ b_init = 0
 iterations = 10000
 tmp_alpha = 1.0e-2
 # run gradient descent
-w_final, b_final, J_hist, p_hist = gradient_descent(x_train ,y_train, w_init, b_init, tmp_alpha, 
-                                                    iterations, compute_cost, compute_gradient)
+w_final, b_final, J_hist, p_hist = gradient_descent(x_train, y_train, w_init, b_init, tmp_alpha, iterations, compute_cost, compute_gradient)
 print(f"(w,b) found by gradient descent: ({w_final:8.4f},{b_final:8.4f})")
-
 
 # <img align="left" src="./images/C1_W1_Lab03_lecture_learningrate.PNG"  style="width:340px; padding: 15px; " > 
 # Take a moment and note some characteristics of the gradient descent process printed above.  

@@ -32,15 +32,12 @@
 # 
 
 # In[1]:
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 from utils import *
 import copy
 import math
 get_ipython().run_line_magic('matplotlib', 'inline')
-
 
 # ## 2 -  Problem Statement
 # 
@@ -61,8 +58,6 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 #   - Both `X_train` and `y_train` are numpy arrays.
 
 # In[2]:
-
-
 # load the dataset
 x_train, y_train = load_data()
 
@@ -74,8 +69,6 @@ x_train, y_train = load_data()
 # The code below prints the variable `x_train` and the type of the variable.
 
 # In[3]:
-
-
 # print x_train
 print("Type of x_train:",type(x_train))
 print("First five elements of x_train are:\n", x_train[:5]) 
@@ -88,8 +81,6 @@ print("First five elements of x_train are:\n", x_train[:5])
 # Now, let's print `y_train`
 
 # In[4]:
-
-
 # print y_train
 print("Type of y_train:",type(y_train))
 print("First five elements of y_train are:\n", y_train[:5])  
@@ -107,8 +98,6 @@ print("First five elements of y_train are:\n", y_train[:5])
 # Please print the shape of `x_train` and `y_train` and see how many training examples you have in your dataset.
 
 # In[5]:
-
-
 print ('The shape of x_train is:', x_train.shape)
 print ('The shape of y_train is: ', y_train.shape)
 print ('Number of training examples (m):', len(x_train))
@@ -124,8 +113,6 @@ print ('Number of training examples (m):', len(x_train))
 # 
 
 # In[6]:
-
-
 # Create a scatter plot of the data. To change the markers to red "x",
 # we used the 'marker' and 'c' parameters
 plt.scatter(x_train, y_train, marker='x', c='r') 
@@ -212,11 +199,8 @@ plt.show()
 # If you get stuck, you can check out the hints presented after the cell below to help you with the implementation.
 
 # In[18]:
-
-
 # UNQ_C1
 # GRADED FUNCTION: compute_cost
-
 def compute_cost(x, y, w, b): 
     """
     Computes the cost function for linear regression.
@@ -243,7 +227,6 @@ def compute_cost(x, y, w, b):
     ### END CODE HERE ### 
 
     return total_cost
-
 
 # <details>
 #   <summary><font size="3" color="darkgreen"><b>Click for hints</b></font></summary>
@@ -326,8 +309,6 @@ def compute_cost(x, y, w, b):
 # You can check if your implementation was correct by running the following test code:
 
 # In[19]:
-
-
 # Compute cost with some initial values for paramaters w, b
 initial_w = 2
 initial_b = 1
@@ -339,7 +320,6 @@ print(f'Cost at initial w: {cost:.3f}')
 # Public tests
 from public_tests import *
 compute_cost_test(compute_cost)
-
 
 # **Expected Output**:
 # <table>
@@ -406,8 +386,6 @@ compute_cost_test(compute_cost)
 # If you get stuck, you can check out the hints presented after the cell below to help you with the implementation.
 
 # In[22]:
-
-
 # UNQ_C2
 # GRADED FUNCTION: compute_gradient
 def compute_gradient(x, y, w, b): 
@@ -438,7 +416,6 @@ def compute_gradient(x, y, w, b):
     ### END CODE HERE ### 
         
     return dj_dw, dj_db
-
 
 # <details>
 #   <summary><font size="3" color="darkgreen"><b>Click for hints</b></font></summary>
@@ -540,8 +517,6 @@ def compute_gradient(x, y, w, b):
 # Run the cells below to check your implementation of the `compute_gradient` function with two different initializations of the parameters $w$,$b$.
 
 # In[23]:
-
-
 # Compute and display gradient with w initialized to zeroes
 initial_w = 0
 initial_b = 0
@@ -563,8 +538,6 @@ compute_gradient_test(compute_gradient)
 # </table>
 
 # In[24]:
-
-
 # Compute and display cost and gradient with non-zero w
 test_w = 0.2
 test_b = 0.2
@@ -593,8 +566,6 @@ print('Gradient at test w, b:', tmp_dj_dw, tmp_dj_db)
 # - Assuming you have implemented the gradient and computed the cost correctly and you have an appropriate value for the learning rate alpha, $J(w,b)$ should never increase and should converge to a steady value by the end of the algorithm.
 
 # In[25]:
-
-
 def gradient_descent(x, y, w_in, b_in, cost_function, gradient_function, alpha, num_iters): 
     """
     Performs batch gradient descent to learn theta. Updates theta by taking 
@@ -649,8 +620,6 @@ def gradient_descent(x, y, w_in, b_in, cost_function, gradient_function, alpha, 
 # Now let's run the gradient descent algorithm above to learn the parameters for our dataset.
 
 # In[26]:
-
-
 # initialize fitting parameters. Recall that the shape of w is (n,)
 initial_w = 0.
 initial_b = 0.
@@ -679,8 +648,6 @@ print("w,b found by gradient descent:", w, b)
 # To calculate the predictions on the entire dataset, we can loop through all the training examples and calculate the prediction for each example. This is shown in the code block below.
 
 # In[27]:
-
-
 m = x_train.shape[0]
 predicted = np.zeros(m)
 
@@ -691,8 +658,6 @@ for i in range(m):
 # We will now plot the predicted values to see the linear fit.
 
 # In[28]:
-
-
 # Plot the linear fit
 plt.plot(x_train, predicted, c = "b")
 
@@ -717,8 +682,6 @@ plt.xlabel('Population of City in 10,000s')
 # 
 
 # In[29]:
-
-
 predict1 = 3.5 * w + b
 print('For population = 35,000, we predict a profit of $%.2f' % (predict1*10000))
 
