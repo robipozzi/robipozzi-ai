@@ -14,6 +14,9 @@ if [ -d "$DIR" ]; then
       fileIn="$(basename "$file")"
       echo $fileIn
       cp $DIR/$fileIn $DIR_TO/$fileIn
+      git add $DIR_TO/$fileIn
+      git commit -m "add file"
+      git push
 
     fi
   done
