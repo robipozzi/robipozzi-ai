@@ -20,6 +20,15 @@ from bokeh.plotting import figure
 import matplotlib.pyplot as plt
 import plotly.offline as py
 
+print(" ")
+print("****************************************************************************************************************************")
+print("****************************************************************************************************************************")
+print("***** REMEMBER TO COPY FROM folder /Users/robertopozzi/temp/robipozzi-ai/coursera/03_UnsupervisedMachineLearning/Week2 *****")
+print("      - toy_dataset.csv")
+print("****************************************************************************************************************************")
+print("****************************************************************************************************************************")
+print(" ")
+
 py.init_notebook_mode()
 output_notebook()
 
