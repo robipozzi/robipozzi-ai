@@ -44,6 +44,19 @@ import tabulate
 from recsysNN_utils import *
 pd.set_option("display.precision", 1)
 
+print(" ")
+print("****************************************************************")
+print("****************************************************************")
+print("***** REMEMBER TO UNZIP THE FOLLOWING FILES IN data folder *****")
+print("      - content_item_train.csv")
+print("      - content_user_to_genre.pickle")
+print("      - content_user_train.csv")
+print("      - small_movies_R.csv")
+print("      - small_movies_Y.csv")
+print("****************************************************************")
+print("****************************************************************")
+print(" ")
+
 # <a name="2"></a>
 # ## 2 - Movie ratings dataset <img align="left" src="./images/film_rating.png" style=" width:40px;" >
 # The data set is derived from the [MovieLens ml-latest-small](https://grouplens.org/datasets/movielens/latest/) dataset. 

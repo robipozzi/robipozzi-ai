@@ -28,6 +28,19 @@ import tensorflow as tf
 from tensorflow import keras
 from recsys_utils import *
 
+print(" ")
+print("****************************************************************")
+print("****************************************************************")
+print("***** REMEMBER TO UNZIP THE FOLLOWING FILES IN data folder *****")
+print("      - content_item_train.csv")
+print("      - content_user_to_genre.pickle")
+print("      - content_user_train.csv")
+print("      - small_movies_R.csv")
+print("      - small_movies_Y.csv")
+print("****************************************************************")
+print("****************************************************************")
+print(" ")
+
 # <a name="1"></a>
 # ## 1 - Notation
 # 
