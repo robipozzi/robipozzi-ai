@@ -1,2 +1,10 @@
 .DS_Store
+coursera/01_SupervisedMachineLearning/Week1/__pycache__/*
+coursera/01_SupervisedMachineLearning/Week2/__pycache__/*
+coursera/01_SupervisedMachineLearning/Week3/__pycache__/*
+coursera/02_AdvancedLearningAlgorithms/Week1/__pycache__/*
+coursera/02_AdvancedLearningAlgorithms/Week2/__pycache__/*
+coursera/02_AdvancedLearningAlgorithms/Week3/__pycache__/*
+coursera/02_AdvancedLearningAlgorithms/Week4/__pycache__/*
+coursera/03_UnsupervisedMachineLearning/Week1/__pycache__/*
 coursera/03_UnsupervisedMachineLearning/Week2/__pycache__/*
