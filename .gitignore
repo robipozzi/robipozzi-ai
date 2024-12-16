@@ -9,3 +9,6 @@ coursera/02_AdvancedLearningAlgorithms/Week4/__pycache__/*
 coursera/03_UnsupervisedMachineLearning/Week1/__pycache__/*
 coursera/03_UnsupervisedMachineLearning/Week2/__pycache__/*
 coursera/03_UnsupervisedMachineLearning/Week3/__pycache__/*
+pytorch/pytorch-venv
+pytorch/quickstart/data/
+pytorch/quickstart/model.pth
